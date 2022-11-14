@@ -98,7 +98,25 @@
 												</div>
 												<div class="card-body pt-2 readmores px-6 mx-1"> 
 													<div>
-														<span>{!! $ticket->message !!}</span>
+														<table class="table">
+															<tr>
+																<th scope="row" >Reason</th>
+																<td>{!! $ticket->reason !!}</td>
+															</tr>
+															<tr>
+																<th scope="row">Reason Caused By</th>
+																<td>{!! $ticket->reasoncausedby !!}</td>
+															</tr>
+															<tr>
+																<th scope="row">Loa No</th>
+																<td>{!! $ticket->loano !!}</td>
+															</tr>
+															<tr>
+																<th scope="row">Description</th>
+																<td>{!! $ticket->message !!}</td>
+															</tr>
+														</table>
+														{{-- <span>{!! $ticket->reason !!}</span> --}}
 	
 														<div class="row galleryopen">
 															@foreach ($ticket->getMedia('ticket') as $ticketss)
@@ -346,7 +364,7 @@
 																	</td>
 																</tr>
 																@endif
-
+																
 																<tr>
 																	<td>
 																		<span class="w-50">{{trans('langconvert.admindashboard.opendate')}}</span>

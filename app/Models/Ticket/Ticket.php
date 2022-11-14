@@ -24,10 +24,10 @@ class Ticket extends Model implements HasMedia
     use HasFactory;
     use InteractsWithMedia;
 
-    protected $table ="tickets";
+    protected $table = "tickets";
     protected $fillable = [
-        'cust_id', 'category_id', 'image', 'ticket_id', 'title', 'priority', 'message', 'status','subject','user_id','project_id','auto_close_ticket',
-        'project', 'purchasecode', 'purchasecodesupport','subcategory'
+        'cust_id', 'category_id', 'image', 'ticket_id', 'title', 'priority', 'message', 'status', 'subject', 'user_id', 'project_id', 'auto_close_ticket',
+        'project', 'purchasecode', 'purchasecodesupport', 'subcategory', 'reason', 'reasoncausedby', 'loano'
     ];
 
     protected $dates = [
@@ -42,7 +42,7 @@ class Ticket extends Model implements HasMedia
     {
         return $this->belongsTo(Customer::class, 'cust_id');
     }
-    
+
     public function users()
     {
         return $this->belongsTo(User::class, 'user_id');
@@ -74,23 +74,23 @@ class Ticket extends Model implements HasMedia
         return $this->hasMany(CategoryUser::class, 'category_id');
     }
 
-    public function ticketnote(){
+    public function ticketnote()
+    {
         return $this->hasmany(Ticketnote::class, 'ticket_id');
     }
 
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('ticket');
-            //add option
+        //add option
     }
     public function subcategories()
     {
-    	return $this->belongsTo(Subcategorychild::class, 'subcategory', 'subcategory_id');
+        return $this->belongsTo(Subcategorychild::class, 'subcategory', 'subcategory_id');
     }
 
     public function subcategoriess()
     {
-    	return $this->belongsTo(Subcategory::class, 'subcategory', 'id');
+        return $this->belongsTo(Subcategory::class, 'subcategory', 'id');
     }
-
 }
